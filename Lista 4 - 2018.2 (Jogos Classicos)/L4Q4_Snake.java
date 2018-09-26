@@ -23,60 +23,13 @@ public class L4Q4_Snake {
         while (quantJogadas > 0 && !perdeu) {
             jogada = in.next();
             if (jogada.equals("D")) {
-                if (posicaoX == tamanhoMatriz - 1) {
-                    if (mapa[0][posicaoY].equals("@")) {
-                        perdeu = true;
-                    } else {
-                        mapa[0][posicaoY] = "#";
-                        mapa[posicaoX][posicaoY] = "*";
-                    }
-                } else {
-                    if (mapa[posicaoX + 1][posicaoY].equals("@")) {
-                        perdeu = true;
-                    } else {
-                        mapa[posicaoX + 1][posicaoY] = "#";
-                        mapa[posicaoX][posicaoY] = "*";
-                    }
-                }
-            } else if (jogada.equals("E")) {
-                if (posicaoX == 0) {
-                    if (mapa[tamanhoMatriz - 1][posicaoY].equals("@")) {
-                        perdeu = true;
-                    } else {
-                        mapa[tamanhoMatriz - 1][posicaoY] = "#";
-                        mapa[posicaoX][posicaoY] = "*";
-                    }
-                } else {
-                    if (mapa[posicaoX - 1][posicaoY].equals("@")) {
-                        perdeu = true;
-                    } else {
-                        mapa[posicaoX - 1][posicaoY] = "#";
-                        mapa[posicaoX][posicaoY] = "*";
-                    }
-                }
-            } else if (jogada.equals("C")) {
-                if (posicaoY == 0) {
-                    if (mapa[posicaoX][tamanhoMatriz - 1].equals("@")) {
-                        perdeu = true;
-                    } else {
-                        mapa[posicaoX][tamanhoMatriz - 1] = "#";
-                        mapa[posicaoX][posicaoY] = "*";
-                    }
-                } else {
-                    if (mapa[posicaoX][posicaoY - 1].equals("@")) {
-                        perdeu = true;
-                    } else {
-                        mapa[posicaoX][posicaoY - 1] = "#";
-                        mapa[posicaoX][posicaoY] = "*";
-                    }
-                }
-            } else {
                 if (posicaoY == tamanhoMatriz - 1) {
                     if (mapa[posicaoX][0].equals("@")) {
                         perdeu = true;
                     } else {
                         mapa[posicaoX][0] = "#";
                         mapa[posicaoX][posicaoY] = "*";
+                        posicaoY = 0;
                     }
                 } else {
                     if (mapa[posicaoX][posicaoY + 1].equals("@")) {
@@ -84,6 +37,61 @@ public class L4Q4_Snake {
                     } else {
                         mapa[posicaoX][posicaoY + 1] = "#";
                         mapa[posicaoX][posicaoY] = "*";
+                        posicaoY = posicaoY + 1;
+                    }
+                }
+            } else if (jogada.equals("E")) {
+                if (posicaoY == 0) {
+                    if (mapa[posicaoX][tamanhoMatriz - 1].equals("@")) {
+                        perdeu = true;
+                    } else {
+                        mapa[posicaoX][tamanhoMatriz - 1] = "#";
+                        mapa[posicaoX][posicaoY] = "*";
+                        posicaoY = tamanhoMatriz - 1;
+                    }
+                } else {
+                    if (mapa[posicaoX][posicaoY - 1].equals("@")) {
+                        perdeu = true;
+                    } else {
+                        mapa[posicaoX][posicaoY - 1] = "#";
+                        mapa[posicaoX][posicaoY] = "*";
+                        posicaoY = posicaoY - 1;
+                    }
+                }
+            } else if (jogada.equals("C")) {
+                if (posicaoX == 0) {
+                    if (mapa[tamanhoMatriz - 1][posicaoY].equals("@")) {
+                        perdeu = true;
+                    } else {
+                        mapa[tamanhoMatriz - 1][posicaoY] = "#";
+                        mapa[posicaoX][posicaoY] = "*";
+                        posicaoX = tamanhoMatriz - 1;
+                    }
+                } else {
+                    if (mapa[posicaoX - 1][posicaoY].equals("@")) {
+                        perdeu = true;
+                    } else {
+                        mapa[posicaoX - 1][posicaoY] = "#";
+                        mapa[posicaoX][posicaoY] = "*";
+                        posicaoX = posicaoX - 1;
+                    }
+                }
+            } else {
+                if (posicaoX == tamanhoMatriz - 1) {
+                    if (mapa[0][posicaoY].equals("@")) {
+                        perdeu = true;
+                    } else {
+                        mapa[0][posicaoY] = "#";
+                        mapa[posicaoX][posicaoY] = "*";
+                        posicaoX = 0;
+                    }
+                } else {
+                    if (mapa[posicaoX + 1][posicaoY].equals("@")) {
+                        perdeu = true;
+                    } else {
+                        mapa[posicaoX + 1][posicaoY] = "#";
+                        mapa[posicaoX][posicaoY] = "*";
+                        posicaoX = posicaoX + 1;
                     }
                 }
             }
