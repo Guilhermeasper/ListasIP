@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class WildCats {
+public class L5Q2_WildCats {
     private static long fatorial(long voltas){
         if(voltas == 0 || voltas == 1){
             return 1;
