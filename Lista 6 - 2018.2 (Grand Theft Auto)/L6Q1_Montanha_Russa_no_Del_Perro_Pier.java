@@ -15,14 +15,21 @@ class Lista {
             this.proximo.inserir(numero);
         }
     }
-    public int[] procurar(int numero, int indice){
+    public int procurar(int numero, int indice){
         if(this.numeroDaSorte == numero){
-            return new int[]{this.numeroDaSorte, indice+1};
+            return indice+1;
         }else if(this.proximo != null){
             return this.proximo.procurar(numero, indice+1);
         }else{
-            return new int[]{-1, indice+1};
+            return -1;
         }
+    }
+    public String toString() {
+        String resposta = "" + this.numeroDaSorte;
+        if (this.proximo != null) {
+            resposta = resposta + "," + this.proximo.toString();
+        }
+        return resposta;
     }
 }
 
@@ -38,11 +45,16 @@ public class L6Q1_Montanha_Russa_no_Del_Perro_Pier {
             numeros.inserir(bilhete);
         }
         int sorteado = in.nextInt();
-        int[] achado = numeros.procurar(sorteado, 0);
-        if(achado[0] == -1){
+        int achado = numeros.procurar(sorteado, 0);
+//        for(i = 0; i<numeros.toString().split(",").length && !achou; i++){
+//            if(numeros.toString().split(",")[i].equals(sorteado) && !achou){
+//                achou = true;
+//            }
+//        }
+        if(achado == -1){
             System.out.println("Nenhum carrinho foi sorteado");
         }else{
-            System.out.println("O bilhete sorteado e o " + sorteado + " e esta no carrinho " + achado[1]);
+            System.out.println("O bilhete sorteado e o " + sorteado + " e esta no carrinho " + achado);
         }
     }
 }
