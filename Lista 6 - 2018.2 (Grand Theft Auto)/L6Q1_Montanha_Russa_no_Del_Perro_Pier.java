@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 class Lista {
@@ -38,13 +40,15 @@ public class L6Q1_Montanha_Russa_no_Del_Perro_Pier {
     public static void main(String[] args) {
         boolean achou = false;
         int bilhete = 0, i;
+        List<int[]> myList = new ArrayList<>();
         Lista numeros = new Lista();
         Scanner in = new Scanner(System.in);
         while (bilhete != -1){
             bilhete = in.nextInt();
-            numeros.inserir(bilhete);
+            myList.add(int[]{bilhete});
         }
         int sorteado = in.nextInt();
+        lista.sort();
         int achado = numeros.procurar(sorteado, 0);
 //        for(i = 0; i<numeros.toString().split(",").length && !achou; i++){
 //            if(numeros.toString().split(",")[i].equals(sorteado) && !achou){
