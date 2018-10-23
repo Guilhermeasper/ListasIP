@@ -15,23 +15,16 @@ class ListaPedidos {
             this.proximo.inserir(pedido);
         }
     }
-    public int remover(String pedido){
+    public void remover(String pedido){
         if(!this.pedido.equals(" ")){
             if(this.pedido.equals(pedido)){
                 this.pedido = pedido;
                 this.pedido = this.proximo.pedido;
                 this.proximo = this.proximo.proximo;
-                if(this.pedido.equals(" ")){
-                    return -1;
-                }
-                return 0;
             } else {
                 this.proximo.remover(pedido);
             }
-        }else{
-            return -1;
         }
-        return -1;
     }
     public String toString() {
         String resposta = "" + this.pedido;
@@ -44,25 +37,27 @@ class ListaPedidos {
 
 public class L6Q3_Pedidos_De_Big_Smoke {
     public static void main(String[] args) {
-        int nullPointer = -1;
+        int nullPointer = 0;
         Scanner in = new Scanner(System.in);
         ListaPedidos pedidos = new ListaPedidos();
         String pedido = "";
         while(in.hasNextLine() && !pedido.equals("The End")){
             pedido = in.nextLine();
             if(!pedido.equals("The End")){
-                nullPointer = 0;
                 pedidos.inserir(pedido);
+                nullPointer += 1;
             }
         }
         while(in.hasNextLine()){
             pedido = in.nextLine();
-            if(pedido != null)
-                nullPointer = pedidos.remover(pedido);
+            if(pedido != null) {
+                pedidos.remover(pedido);
+                nullPointer -= 1;
+            }
         }
         pedido = pedidos.toString();
         System.out.print(pedido);
-        if(pedido == null && nullPointer == -1){
+        if(nullPointer == 0){
             System.out.println("U gotta null pointer ma man");
         }
     }
