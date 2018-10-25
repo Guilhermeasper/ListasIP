@@ -4,19 +4,23 @@ class ListaVeiculos {
     private String veiculos;
     private ListaVeiculos proximo;
     public ListaVeiculos () {
-        veiculos = " ";
+        veiculos = "";
         proximo = null;
     }
     public void inserir(String veiculos) {
-        if (this.veiculos.equals(" ")) {
+        if (this.veiculos.equals("")) {
             this.veiculos = veiculos;
             this.proximo = new ListaVeiculos();
-        } else {
+        } else if(Integer.parseInt(this.veiculos) > Integer.parseInt(veiculos)){
+            String aux = this.veiculos;
+            this.veiculos = veiculos;
+            this.proximo.inserir(aux);
+        }else{
             this.proximo.inserir(veiculos);
         }
     }
     public void remover(String veiculos){
-        if(!this.veiculos.equals(" ")){
+        if(!this.veiculos.equals("")){
             if(this.veiculos.equals(veiculos)){
                 this.veiculos = veiculos;
                 this.veiculos = this.proximo.veiculos;
@@ -27,63 +31,41 @@ class ListaVeiculos {
         }
     }
     public String repetido(String veiculos){
-        if(this.veiculos.equals(" ")){
+        if(this.veiculos.equals("")){
             return "";
         }else{
             if(this.veiculos.equals(this.proximo.busca(this.veiculos))){
                 this.remover(this.veiculos);
-                return veiculos + " " + this.repetido(this.proximo.veiculos);
+                return this.veiculos + " " + this.repetido(this.proximo.veiculos);
             }else{
-                return this.proximo.repetido(this.proximo.veiculos);
+                return this.proximo.repetido(this.proximo.veiculos) + "   ";
             }
         }
     }
     public String toString() {
         String resposta = "" + this.veiculos;
         if (this.proximo != null) {
-            resposta = resposta + " " + this.proximo.toString();
+            if(this.proximo.proximo != null)
+                resposta = resposta + " " + this.proximo.toString();
+            else
+                resposta = resposta + this.proximo.toString();
         }
         return resposta;
     }
     public String busca(String veiculo){
-        if(!this.veiculos.equals(" ")){
+        if(!this.veiculos.equals("")){
             if(this.veiculos.equals(veiculo)){
                 return veiculo;
             }else{
                 return this.proximo.busca(veiculo);
             }
         }else{
-            return "AINDA NAO";
+            return "";
         }
     }
 }
 
 public class L6Q4_Armazenando_Veiculos {
-    private static String organiza(String veiculos){
-        if("".equals(veiculos)){
-            return "";
-        }else{
-            int[] teste = new int[veiculos.split(" ").length];
-            String retorno = "";
-            for(int i = 0; i<veiculos.split(" ").length; i++){
-                teste[i] = Integer.parseInt(veiculos.split(" ")[i]);
-            }
-            for(int i = 0; i<teste.length-1; i++){
-                for(int j = 0; j<teste.length; j++){
-                    if(teste[j]>teste[i+1]){
-                        int aux = teste[i];
-                        teste [j] = teste[i+1];
-                        teste [i+1] = aux;
-                    }
-                }
-            }
-            for(int i = 0; i<veiculos.split(" ").length; i++){
-                retorno += " " + teste[i];
-            }
-            return retorno;
-        }
-    }
-
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         ListaVeiculos carro = new ListaVeiculos();
@@ -99,42 +81,42 @@ public class L6Q4_Armazenando_Veiculos {
             if(entrada.equals("VERIFICAR")){
                 switch (veiculo.substring(0, 2)) {
                     case "67":
-                        if (carro.busca(entrada).equals(entrada)) {
+                        if (carro.busca(veiculo).equals(veiculo)) {
                             System.out.println("EXISTE");
                         } else {
                             System.out.println("AINDA NAO");
                         }
                         break;
                     case "65":
-                        if (aviao.busca(entrada).equals(entrada)) {
+                        if (aviao.busca(veiculo).equals(veiculo)) {
                             System.out.println("EXISTE");
                         } else {
                             System.out.println("AINDA NAO");
                         }
                         break;
                     case "77":
-                        if (moto.busca(entrada).equals(entrada)) {
+                        if (moto.busca(veiculo).equals(veiculo)) {
                             System.out.println("EXISTE");
                         } else {
                             System.out.println("AINDA NAO");
                         }
                         break;
                     case "66":
-                        if (bicicleta.busca(entrada).equals(entrada)) {
+                        if (bicicleta.busca(veiculo).equals(veiculo)) {
                             System.out.println("EXISTE");
                         } else {
                             System.out.println("AINDA NAO");
                         }
                         break;
                     case "84":
-                        if (tanque.busca(entrada).equals(entrada)) {
+                        if (tanque.busca(veiculo).equals(veiculo)) {
                             System.out.println("EXISTE");
                         } else {
                             System.out.println("AINDA NAO");
                         }
                         break;
                     default:
-                        if (submarino.busca(entrada).equals(entrada)) {
+                        if (submarino.busca(veiculo).equals(veiculo)) {
                             System.out.println("EXISTE");
                         } else {
                             System.out.println("AINDA NAO");
@@ -144,7 +126,7 @@ public class L6Q4_Armazenando_Veiculos {
             }else if(entrada.equals("IMPRIMIR")){
                 switch (veiculo.substring(0, 2)) {
                     case "67":
-                        retorno = organiza(carro.toString());
+                        retorno = carro.toString();
                         if(retorno.equals("")){
                             System.out.println("A GARAGEM ESTA VAZIA :(");
                         }else{
@@ -152,7 +134,7 @@ public class L6Q4_Armazenando_Veiculos {
                         }
                         break;
                     case "65":
-                        retorno = organiza(aviao.toString());
+                        retorno = aviao.toString();
                         if(retorno.equals("")){
                             System.out.println("A GARAGEM ESTA VAZIA :(");
                         }else{
@@ -160,7 +142,7 @@ public class L6Q4_Armazenando_Veiculos {
                         }
                         break;
                     case "77":
-                        retorno = organiza(moto.toString());
+                        retorno = moto.toString();
                         if(retorno.equals("")){
                             System.out.println("A GARAGEM ESTA VAZIA :(");
                         }else{
@@ -168,7 +150,7 @@ public class L6Q4_Armazenando_Veiculos {
                         }
                         break;
                     case "66":
-                        retorno = organiza(bicicleta.toString());
+                        retorno = bicicleta.toString();
                         if(retorno.equals("")){
                             System.out.println("A GARAGEM ESTA VAZIA :(");
                         }else{
@@ -176,7 +158,7 @@ public class L6Q4_Armazenando_Veiculos {
                         }
                         break;
                     case "84":
-                        retorno = organiza(tanque.toString());
+                        retorno = tanque.toString();
                         if(retorno.equals("")){
                             System.out.println("A GARAGEM ESTA VAZIA :(");
                         }else{
@@ -184,7 +166,7 @@ public class L6Q4_Armazenando_Veiculos {
                         }
                         break;
                     default:
-                        retorno = organiza(submarino.toString());
+                        retorno = submarino.toString();
                         if(retorno.equals("")){
                             System.out.println("A GARAGEM ESTA VAZIA :(");
                         }else{
@@ -216,24 +198,33 @@ public class L6Q4_Armazenando_Veiculos {
                         break;
                 }
             }else{
+                String aux;
                 switch (veiculo.substring(0, 2)) {
                     case "67":
-                        System.out.println(carro.repetido(""));
+                        aux = carro.repetido("");
+                        if(!"".equals(aux))
+                            System.out.println(aux.substring(0,aux.length()-1));
                         break;
                     case "65":
-                        System.out.println(aviao.repetido(""));
+                        aux = aviao.repetido("");
+                        if(!"".equals(aux))
+                            System.out.println(aux.substring(0,aux.length()-1));
                         break;
                     case "77":
-                        System.out.println(moto.repetido(""));
+                        aux = moto.repetido("");
+                        System.out.println(aux.substring(0,aux.length()-1));
                         break;
                     case "66":
-                        System.out.println(bicicleta.repetido(""));
+                        aux = bicicleta.repetido("");
+                        System.out.println(aux.substring(0,aux.length()-1));
                         break;
                     case "84":
-                        System.out.println(tanque.repetido(""));
+                        aux = tanque.repetido("");
+                        System.out.println(aux.substring(0,aux.length()-1));
                         break;
                     default:
-                        System.out.println(submarino.repetido(""));
+                        aux = submarino.repetido("");
+                        System.out.println(aux.substring(0,aux.length()-1));
                 }
             }
         }
