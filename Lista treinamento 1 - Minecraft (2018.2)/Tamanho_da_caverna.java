@@ -7,7 +7,7 @@ public class HuxleyCode {
 		Scanner in = new Scanner(System.in);
 		l = in.nextInt();
 		a = in.nextInt();
-		b = l*l*a;
+		b = l * l * a;
 		System.out.print(b);
   }
 }
