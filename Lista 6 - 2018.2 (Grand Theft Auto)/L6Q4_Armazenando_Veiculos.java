@@ -35,7 +35,7 @@ class ListaVeiculos {
     }
 
     public String repetido(String veiculos) {
-        if (this.veiculos.equals("")) {
+        if ("".equals(this.veiculos)) {
             return "";
         } else {
             if (this.veiculos.equals(this.proximo.busca(this.veiculos))) {
@@ -207,37 +207,48 @@ public class L6Q4_Armazenando_Veiculos {
                 String aux;
                 switch (veiculo.substring(0, 2)) {
                     case "67":
-                        aux = carro.repetido("");
-                        if (!"".equals(aux))
-                            System.out.println(aux.substring(0, aux.length() - 1));
+                        String aux1 = carro.repetido("");
+                        if (!"".equals(aux1))
+                            System.out.println(aux1.substring(0, aux1.length() - 1));
+                        else
+                            System.out.println("NADA REPETIDO POR ENQUANTO :)");
                         break;
                     case "65":
-                        aux = aviao.repetido("");
-                        if (!"".equals(aux))
-                            System.out.println(aux.substring(0, aux.length() - 1));
+                        String aux2 = aviao.repetido("");
+                        if (!"".equals(aux2))
+                            System.out.println(aux2.substring(0, aux2.length() - 1));
+                        else
+                            System.out.println("NADA REPETIDO POR ENQUANTO :)");
                         break;
                     case "77":
-                        aux = moto.repetido("");
-                        if (!"".equals(aux))
-                            System.out.println(aux.substring(0, aux.length() - 1));
+                        String aux3 = moto.repetido("");
+                        if (!"".equals(aux3))
+                            System.out.println(aux3.substring(0, aux3.length() - 1));
+                        else
+                            System.out.println("NADA REPETIDO POR ENQUANTO :)");
                         break;
                     case "66":
-                        aux = bicicleta.repetido("");
-                        if (!"".equals(aux))
-                            System.out.println(aux.substring(0, aux.length() - 1));
+                        String aux4 = bicicleta.repetido("");
+                        if (!"".equals(aux4))
+                            System.out.println(aux4.substring(0, aux4.length() - 1));
+                        else
+                            System.out.println("NADA REPETIDO POR ENQUANTO :)");
                         break;
                     case "84":
-                        aux = tanque.repetido("");
-                        if (!"".equals(aux))
-                            System.out.println(aux.substring(0, aux.length() - 1));
+                        String aux5 = tanque.repetido("");
+                        if (!"".equals(aux5))
+                            System.out.println(aux5.substring(0, aux5.length() - 1));
+                        else
+                            System.out.println("NADA REPETIDO POR ENQUANTO :)");
                         break;
                     default:
-                        aux = submarino.repetido("");
-                        if (!"".equals(aux))
-                            System.out.println(aux.substring(0, aux.length() - 1));
+                        String aux6 = submarino.repetido("");
+                        if (!"".equals(aux6))
+                            System.out.println(aux6.substring(0, aux6.length() - 1));
+                        else
+                            System.out.println("NADA REPETIDO POR ENQUANTO :)");
                 }
             }
         }
-
     }
 }
