@@ -1,13 +1,18 @@
 import java.util.Scanner;
 
+// Classe com a lista de pedidos
 class ListaPedidos {
     private String pedido;
     private ListaPedidos proximo;
-    public ListaPedidos () {
+
+    // Método construtor da classe
+    ListaPedidos() {
         pedido = " ";
         proximo = null;
     }
-    public void inserir(String pedido) {
+
+    // Método de inserção
+    void inserir(String pedido) {
         if (this.pedido.equals(" ")) {
             this.pedido = pedido;
             this.proximo = new ListaPedidos();
@@ -15,9 +20,11 @@ class ListaPedidos {
             this.proximo.inserir(pedido);
         }
     }
-    public void remover(String pedido){
-        if(!this.pedido.equals(" ")){
-            if(this.pedido.equals(pedido)){
+
+    // Método de remoção de pedido
+    void remover(String pedido) {
+        if (!this.pedido.equals(" ")) {
+            if (this.pedido.equals(pedido)) {
                 this.pedido = pedido;
                 this.pedido = this.proximo.pedido;
                 this.proximo = this.proximo.proximo;
@@ -26,38 +33,43 @@ class ListaPedidos {
             }
         }
     }
+
+    // Método para imprimir lista de pedidos
     public String toString() {
         String resposta = "" + this.pedido;
         if (this.proximo != null) {
-            resposta = resposta + "\n" + this.proximo.toString();
+            if (this.proximo.proximo != null)
+                resposta = resposta + "\n" + this.proximo.toString();
+            else
+                return resposta;
         }
         return resposta;
+    }
+
+    boolean vazia() {
+        return this.pedido.equals("");
     }
 }
 
 public class L6Q3_Pedidos_De_Big_Smoke {
     public static void main(String[] args) {
-        int nullPointer = 0;
         Scanner in = new Scanner(System.in);
         ListaPedidos pedidos = new ListaPedidos();
         String pedido = "";
-        while(in.hasNextLine() && !pedido.equals("The End")){
+        while (in.hasNextLine() && !pedido.equals("The End")) {
             pedido = in.nextLine();
-            if(!pedido.equals("The End")){
+            if (!pedido.equals("The End")) {
                 pedidos.inserir(pedido);
-                nullPointer += 1;
             }
         }
-        while(in.hasNextLine()){
+        while (in.hasNextLine()) {
             pedido = in.nextLine();
-            if(pedido != null) {
+            if (!pedido.equals("")) {
                 pedidos.remover(pedido);
-                nullPointer -= 1;
             }
         }
-        pedido = pedidos.toString();
-        System.out.print(pedido);
-        if(nullPointer == 0){
+        System.out.print(pedidos.toString());
+        if (pedidos.vazia()) {
             System.out.println("U gotta null pointer ma man");
         }
     }

@@ -1,13 +1,18 @@
 import java.util.Scanner;
 
+// Classe com lista de estantes
 class ListaEstantes {
     private String livros;
     private ListaEstantes proximo;
-    public ListaEstantes () {
+
+    // Método construtor da classe de estantes
+    ListaEstantes() {
         this.livros = " ";
         this.proximo = null;
     }
-    public void inserir(String livro) {
+
+    // Método de inserção de livros
+    void inserir(String livro) {
         if (this.livros.equals(" ")) {
             this.livros = livro;
             this.proximo = new ListaEstantes();
@@ -15,12 +20,14 @@ class ListaEstantes {
             this.proximo.inserir(livro);
         }
     }
-    public int procurar(int indice){
-        if(this.livros.equals("Livro de Rimas")){
-            return indice+1;
-        }else if(this.proximo != null){
-            return this.proximo.procurar(indice+1);
-        }else{
+
+    // Método de procura da posição do livro de rimas, caso não esteja na estante retorna -1
+    int procurar(int indice) {
+        if (this.livros.equals("Livro de Rimas")) {
+            return indice + 1;
+        } else if (this.proximo != null) {
+            return this.proximo.procurar(indice + 1);
+        } else {
             return -1;
         }
     }
@@ -32,7 +39,7 @@ public class L6Q2_Livro_de_Rimas {
         boolean achou = false;
         int quantidade = in.nextInt();
         int posLivro = 0, i;
-        if(quantidade>0) {
+        if (quantidade > 0) {
             ListaEstantes[] estantes = new ListaEstantes[quantidade];
             for (i = 0; i < estantes.length; i++) {
                 int quantidadeLivros = in.nextInt();
@@ -46,7 +53,7 @@ public class L6Q2_Livro_de_Rimas {
             }
             for (i = 0; i < estantes.length && !achou; i++) {
                 posLivro = estantes[i].procurar(0);
-                if (posLivro != -1 && !achou) {
+                if (posLivro != -1) {
                     achou = true;
                 }
             }
@@ -55,7 +62,7 @@ public class L6Q2_Livro_de_Rimas {
             } else {
                 System.out.println("Og Loc, o livro nao esta aqui!");
             }
-        }else{
+        } else {
             System.out.println("Nao tem livros por aqui");
         }
     }
